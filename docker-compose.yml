@@ -1,0 +1,35 @@
+version: '3'
+services:
+  client:
+    image: node:18
+    container_name: client
+    working_dir: /app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - server
+      - dataBase
+    command: npm start
+    volumes:
+      - ./client:/app
+  server:
+    image: node:18
+    container_name: server
+    ports:
+      - '9001:9001'
+    depends_on:
+      - dataBase
+    working_dir: /app
+    volumes:
+      - ./server:/app
+    command: npm run start:dev
+  dataBase:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=dataBase
+    ports:
+      - "5432:5432"
+    volumes: 
+      - ./data/database-data:/var/lib/postgresql/data/

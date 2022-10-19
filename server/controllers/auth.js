@@ -1,59 +1,54 @@
-import pool from "../db/db";
-import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
+import jwt from 'jsonwebtoken';
+import { QueryTypes } from 'sequelize';
+import { sequelize } from '../sequelize/sequelize';
 
-export const registration = async (req, res, next) => {
-  try {
+exports.registration = async (req, res) => {
     const { email, password } = req.body;
-    await pool.query(`
-            INSERT INTO users (email, password)
-            VALUES('${email}', '${password}')
-        `);
-    res.status(200).json("success");
-  } catch (error) {
-    console.log(error);
-  }
+    try {
+        await sequelize.query(`
+       INSERT INTO "Users"(email, password, "createdAt", "updatedAt")
+            VALUES('${email}', '${password}', '${date}', '${date}')
+       `);
+        res.status(201).json({ message: 'User create' });
+    } catch (error) {
+        console.log(error)
+    }
 };
 
-export const verify = async (res, req, next) => {
-  try {
-    console.log(req.headers);
-    const authHeader = req.headers["authorization"];
-    const token = String(authHeader) && String(authHeader).split(" ")[1];
-    if (token === null) return res.status(401);
-    jwt.verify(token, "secret", (err, user) => {
-      if (err) return res.send(403);
-      req.user = user;
-    });
-
-    next();
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const login = async (res, req) => {
-  try {
+exports.login = async (req, res) => {
     const { email, password } = req.body;
-    const user = await pool
-      .query(
-        `
-            SELECT email, password FROM users
+    try {
+        const user = await sequelize.query(`
+            SELECT email, password FROM "Users"
             WHERE email = '${email}'
-        `
-      )
-      .then((result) => result.rows[0]);
-    if (!user) return res.status(200).json({ message: "Email incorrect" });
-    if (password !== user.password)
-      return res.status(200).json({ message: "Password incorrect" });
+        `, { type: QueryTypes.SELECT });
 
-    const token = jwt.sign(
-      {
-        email: user.email,
-      },
-      "secret"
-    );
-    res.status(200).json({ token: token });
-  } catch (error) {
-    console.log(error);
-  };
+        if (!user[0]) return
+        if (password !== user[0].password) return res.json({ message: 'Login or password is incorrect' })
+
+        const token = jwt.sign({
+            email: user[0].email,
+        }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRES_IN  })
+        res.status(200).json(token);
+
+    } catch (error) {
+        console.log(error)
+    }
 };
+
+exports.verifyToken = async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    try {
+        if (!token) return
+        jwt.verify(String(token), process.env.JWT_SECRET, (err, result) => {
+            if (err) return
+            res.status(200).json(result);
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
+}

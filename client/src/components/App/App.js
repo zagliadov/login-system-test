@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Main from '../Main/Main';
 
-export const App = () => {
-
-  return (
-    <div>
-      <h1 className={'border'}>Hello</h1>
-    </div>
-  );
-};
+export default class App extends Component {
+    render() {
+        return (
+            <section>
+                <h1>Exchange Rates</h1>
+                <Main />
+            </section>
+        )
+    }
+}

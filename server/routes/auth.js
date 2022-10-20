@@ -1,18 +1,10 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
-import {
-    registration,
-    login,
-    verifyToken,
-} from '../controllers/auth.js';
+import { registration, login, verifyToken } from "../controllers/auth.js";
 
-router.post('/registration', registration);
-router.post('/login', login);
+router.post("/registration", registration);
+router.post("/login", login);
 
-router.route('/verifytoken')
-    .post(verifyToken);
-
-
-
+router.route("/verifytoken").post(verifyToken);
 
 export default router;

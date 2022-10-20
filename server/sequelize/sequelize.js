@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
-import { Sequelize } from 'sequelize';
+import { Sequelize } from "sequelize";
 
-export const sequelize = new Sequelize('dataBase', 'root', 'root', {
-    dialect: 'mysql',
-    host: 'dataBase',
+export const sequelize = new Sequelize("dataBase", "root", "root", {
+  dialect: "mysql",
+  host: "dataBase",
 });

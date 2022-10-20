@@ -24,12 +24,10 @@ services:
       - ./server:/app
     command: npm run start:dev
   dataBase:
-    image: postgres:latest
+    image: mysql:latest
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=dataBase
+      - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes: 
       - ./data/database-data:/var/lib/postgresql/data/

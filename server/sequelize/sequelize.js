@@ -3,6 +3,6 @@ dotenv.config();
 import { Sequelize } from 'sequelize';
 
 export const sequelize = new Sequelize('dataBase', 'root', 'root', {
-    dialect: 'postgres',
+    dialect: 'mysql',
     host: 'dataBase',
 });

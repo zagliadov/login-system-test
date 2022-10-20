@@ -24,16 +24,6 @@ const SignUp = () => {
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit(onSubmit)} className={signup}>
         <section className={input__wrapper}>
-          <label>Firstname: </label>
-          <input type="text" {...register("firstname", { required: true })} />
-        </section>
-
-        <section className={input__wrapper}>
-          <label>Lastname: </label>
-          <input type="text" {...register("lastname", { required: true })} />
-        </section>
-
-        <section className={input__wrapper}>
           <label>Email: </label>
           <input type="text" {...register("email", { required: true })} />
         </section>

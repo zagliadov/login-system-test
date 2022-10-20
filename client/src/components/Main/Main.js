@@ -15,7 +15,7 @@ const Main = () => {
                 <Route path="/signup">
                     <SignUp />
                 </Route>
-                <Route path="/">
+                <Route path="/" exact>
                     <div><h1>Home</h1></div>
                 </Route>
             </Switch>

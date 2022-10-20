@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import jwt from 'jsonwebtoken';
 import { QueryTypes } from 'sequelize';
-import { sequelize } from '../sequelize/sequelize';
+import { sequelize } from '../sequelize/sequelize.js';
 
 export const registration = async (req, res) => {
     const { email, password } = req.body;

@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import classes from './signin.module.sass';
 import { useForm } from "react-hook-form";
-import { useAppDispatch, useAppSelector } from '../../features/store';
-import { login, verifyToken } from '../../features/Auth/userSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { login, verifyToken } from '../../features/counter/authSlice';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const SignIn = () => {
     const [inputType, setInputType] = useState('password');
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
-    const token = useAppSelector((state) => state.user.token);
-    const status = useAppSelector((state) => state.user.status);
+    const token = useSelector((state) => state.user.token);
+    const status = useSelector((state) => state.user.status);
     const history = useHistory();
     const {
         wrapper,

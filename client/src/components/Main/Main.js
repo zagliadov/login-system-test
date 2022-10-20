@@ -1,15 +1,13 @@
 
-import classes from './main.module.sass';
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
 
 import { Switch, Route } from "react-router-dom";
 
 const Main = () => {
-    const { main } = classes;
     
     return (
-        <main className={main}>
+        <main>
             <Switch>
                 <Route path="/signin">
                     <SignIn />

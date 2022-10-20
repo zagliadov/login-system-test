@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { createHmac } from 'crypto';
 import axios from 'axios';
 
 const initialState = {
@@ -15,7 +14,6 @@ const initialState = {
 export const registration = createAsyncThunk(
   'user/registration',
   async (data) => {
-    data.password = await createHmac('sha256', data.password).update('pass').digest('hex');
     try {
       return await axios.post(`http://0.0.0.0:9001/api/auth/registration`, data)
         .then((response) => response.data)
@@ -29,7 +27,6 @@ export const registration = createAsyncThunk(
 export const login = createAsyncThunk(
   'user/login',
   async (data) => {
-    data.password = await createHmac('sha256', data.password).update('pass').digest('hex');
     try {
       return await axios.post(`http://0.0.0.0:9001/api/auth/login`, data)
         .then((response) => response.data)

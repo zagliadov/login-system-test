@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { QueryTypes } from 'sequelize';
 import { sequelize } from '../sequelize/sequelize';
 
-exports.registration = async (req, res) => {
+export const registration = async (req, res) => {
     const { email, password } = req.body;
     try {
         await sequelize.query(`
@@ -17,7 +17,7 @@ exports.registration = async (req, res) => {
     }
 };
 
-exports.login = async (req, res) => {
+export const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await sequelize.query(`
@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
     }
 };
 
-exports.verifyToken = async (req, res) => {
+export const verifyToken = async (req, res) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     try {

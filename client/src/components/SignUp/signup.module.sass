@@ -1,0 +1,53 @@
+@import '../../colors/colors.module.sass'
+
+.wrapper
+    display: flex
+    align-items: center
+    padding-bottom: 20px
+    flex-direction: column
+    h2
+        color: $dominantColor
+.signup
+    display: flex
+    flex-direction: column
+
+.input__wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 20px
+    input
+        font-size: 24px
+        border: none
+        outline: none
+        color: $dominantColor
+        box-shadow: 0px 1px 0px $inputAtRest
+        &:hover
+            box-shadow: 0px 2px 0px $inputAtRest
+    label
+        font-size: 24px
+        color: $dominantColor
+        font-weight: 900
+        padding-right: 20px
+
+.input__wrapper_submit
+    display: flex
+    justify-content: center
+    padding: 20px 10px
+    input
+        padding: 5px 50px
+        border: none 
+        border-radius: 5px
+        color: $buttonValue
+        cursor: pointer
+        font-size: 20px
+        background-color: $buttonAtRest
+        &:hover
+            background-color: $buttonOnHover
+
+
+@media screen and (max-width: 667px) 
+    .wrapper
+        width: 100%
+        input
+            width: 60%

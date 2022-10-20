@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import classes from './signin.module.sass';
 import { useForm } from "react-hook-form";
-import { useAppDispatch, useAppSelector, RootState } from '../../features/store';
+import { useAppDispatch, useAppSelector } from '../../features/store';
 import { login, verifyToken } from '../../features/Auth/userSlice';
 import { useHistory } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const SignIn = () => {
     const [inputType, setInputType] = useState('password');

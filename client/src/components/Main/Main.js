@@ -1,8 +1,8 @@
 
 import classes from './main.module.sass';
-import SignIn from '../Auth/SignIn/SignIn';
-import SignUp from '../Auth/SignUp/SignUp';
-import Home from '../Home/Home';
+import SignIn from '../SignIn/SignIn';
+import SignUp from '../SignUp/SignUp';
+
 import { Switch, Route } from "react-router-dom";
 
 const Main = () => {
@@ -18,7 +18,7 @@ const Main = () => {
                     <SignUp />
                 </Route>
                 <Route path="/">
-                    <Home />
+                    <div><h1>Home</h1></div>
                 </Route>
             </Switch>
         </main>

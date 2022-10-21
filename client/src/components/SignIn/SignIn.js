@@ -1,12 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login } from "../../features/counter/authSlice";
+import { login, getStatus } from "../../features/counter/authSlice";
+import { withNavigate } from "../../helper/helper";
 
 class SignIn extends Component {
-  state = {
-    email: null,
-    password: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      message: null,
+    };
+  }
+
+  componentDidMount() {
+    localStorage.removeItem("token");
   };
+
+  // componentDidUpdate() {
+  //   if (this.props.token) {
+  //     this.setState({message: ";sdfkjaskl"})
+  //   } 
+  // };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +30,9 @@ class SignIn extends Component {
         email: this.state.email,
         password: this.state.password,
       });
-    }
+    };
+    this.setState({email: null, password: null});
+    console.log(this.props.status)
   };
 
   render() {
@@ -26,19 +43,25 @@ class SignIn extends Component {
           <input
             className="border p-2"
             type="text"
+            value={this.state.email || ""}
             onChange={(e) => this.setState({ email: e.target.value })}
           />
           <input
             className="border p-2 mt-3"
             type="text"
+            value={this.state.password || ""}
             onChange={(e) => this.setState({ password: e.target.value })}
           />
-
           <input className="mt-2 border w-44" type="submit" value="Submit" />
         </form>
       </section>
     );
   }
 }
-
-export default connect(null, { login })(SignIn);
+function mapStateToProps(state) {
+  return {
+    token: state.counter.token,
+    status: state.counter.status,
+  };
+};
+export default withNavigate(connect(mapStateToProps, { login })(SignIn));

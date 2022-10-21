@@ -20,16 +20,15 @@ export const registration = async (req, res) => {
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
-    console.log(req.body)
     try {
         const user = await sequelize.query(`
-            SELECT email, password FROM "Users"
+            SELECT email, password FROM Users
             WHERE email = '${email}'
         `, { type: QueryTypes.SELECT });
-
         if (!user[0]) return
-        if (password !== user[0].password) return res.json({ message: 'Login or password is incorrect' })
-
+        if (password !== user[0].password) {
+          return res.json({message: 'Login or password is incorrect'})
+        };
         const token = jwt.sign({
             email: user[0].email,
         }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRES_IN  })

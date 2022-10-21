@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.use('/api/auth', auth);
 
+
 sequelize.sync().then(() => {
     app.listen(PORT, async () => {
         console.log(`Server run on: ${PORT}`)

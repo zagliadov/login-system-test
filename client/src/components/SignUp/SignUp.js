@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { registration } from "../../features/counter/authSlice";
-
+import { withNavigate } from "../../helper/helper";
 class SignUp extends Component {
-  state = {
-    email: null,
-    password: null,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: null,
+      password: null,
+    };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -15,7 +18,9 @@ class SignUp extends Component {
         email: this.state.email,
         password: this.state.password,
       });
-    }
+    };
+    this.setState({email: "", password: ""});
+    this.props.navigation('/signin');
   };
 
   render() {
@@ -26,11 +31,13 @@ class SignUp extends Component {
           <input
             className="border p-2"
             type="text"
+            value={this.state.email || ""}
             onChange={(e) => this.setState({ email: e.target.value })}
           />
           <input
             className="border p-2 mt-3"
             type="text"
+            value={this.state.password || ""}
             onChange={(e) => this.setState({ password: e.target.value })}
           />
 
@@ -41,4 +48,4 @@ class SignUp extends Component {
   }
 }
 
-export default connect(null, { registration })(SignUp);
+export default withNavigate(connect(null, { registration })(SignUp));

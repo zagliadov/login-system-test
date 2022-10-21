@@ -6,10 +6,11 @@ import { sequelize } from '../sequelize/sequelize.js';
 
 export const registration = async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body)
     try {
         await sequelize.query(`
-       INSERT INTO "Users"(email, password, "createdAt", "updatedAt")
-            VALUES('${email}', '${password}', '${date}', '${date}')
+       INSERT INTO "Users"(email, password)
+            VALUES('${email}', '${password}')
        `);
         res.status(201).json({ message: 'User create' });
     } catch (error) {

@@ -16,7 +16,7 @@ export const registration = createAsyncThunk(
   async (data) => {
     try {
       return await axios
-        .post(`http://0.0.0.0:9001/api/auth/registration`, data)
+        .post(`http://127.0.0.1:9001/api/auth/registration`, data)
         .then((response) => response.data)
         .then((data) => data.message);
     } catch (error) {
@@ -28,7 +28,7 @@ export const registration = createAsyncThunk(
 export const login = createAsyncThunk("user/login", async (data) => {
   try {
     return await axios
-      .post(`http://0.0.0.0:9001/api/auth/login`, data)
+      .post(`http://127.0.0.1:9001/api/auth/login`, data)
       .then((response) => response.data)
       .then((data) => {
         if (!data) return;

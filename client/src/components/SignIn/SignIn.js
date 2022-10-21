@@ -1,75 +1,44 @@
-import { useEffect, useState } from 'react';
-import classes from './signin.module.sass';
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { login, verifyToken } from '../../features/counter/authSlice';
-import { useHistory } from 'react-router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { login } from "../../features/counter/authSlice";
 
-const SignIn = () => {
-    const [inputType, setInputType] = useState('password');
-    const dispatch = useDispatch();
-    const { register, handleSubmit } = useForm();
-    const token = useSelector((state) => state.user.token);
-    const status = useSelector((state) => state.user.status);
-    const history = useHistory();
-    const {
-        wrapper,
-        signin,
-        password,
-        messageFromServer,
-        input__wrapper,
-        input__wrapper_submit,
-    } = classes;
+class SignIn extends Component {
+  state = {
+    email: null,
+    password: null,
+  };
 
-    const onSubmit = (data) => {
-        dispatch(login(data));
-    };
-    useEffect(() => {
-        if (!localStorage.getItem('token')) return;
-        dispatch(verifyToken(localStorage.getItem('token')));
-        history.push('/');
-    }, [dispatch, token, history]);
-
-    const handleChangeInputTypeOnText = () => {
-        setInputType('text');
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.email && this.state.password) {
+      this.props.login({
+        email: this.state.email,
+        password: this.state.password,
+      });
     }
-    const handleChangeInputTypeOnPassword = () => {
-        setInputType('password');
-    }
+  };
 
+  render() {
     return (
-        <section className={wrapper}>
-            <h2>Sign In</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className={signin}>
-                <section className={input__wrapper}>
-                    <label>Email: </label>
-                    <input type='text' {...register("email", { required: true })} />
-                </section>
+      <section className="border flex flex-col justify-center p-5">
+        <p className="flex justify-center p-4">Sing In</p>
+        <form onSubmit={this.handleSubmit} className="border p-2 flex flex-col items-center">
+          <input
+            className="border p-2"
+            type="text"
+            onChange={(e) => this.setState({ email: e.target.value })}
+          />
+          <input
+            className="border p-2 mt-3"
+            type="text"
+            onChange={(e) => this.setState({ password: e.target.value })}
+          />
 
-                <section className={input__wrapper}>
-                    <label >Password: </label>
-                    <input type={inputType} {...register("password", { required: true })} />
-                </section>
-                <div className={password}>
-                    {(inputType === 'password') ?
-                        <FontAwesomeIcon icon={faEyeSlash} onClick={() => {
-                            handleChangeInputTypeOnText();
-                        }} />
-                        :
-                        <FontAwesomeIcon icon={faEye} onClick={() => {
-                            handleChangeInputTypeOnPassword();
-                        }} />
-                    }
-                </div>
-                <div className={messageFromServer}>{(status && (status !== 'resolved')) && <label>{status}</label>}</div>
-                <section className={input__wrapper_submit}>
-                    <input type='submit' value='Sign In' />
-                </section>
-            </form>
-        </section>
+          <input className="mt-2 border w-44" type="submit" value="Submit" />
+        </form>
+      </section>
     );
-};
+  }
+}
 
-export default SignIn;
+export default connect(null, { login })(SignIn);

@@ -1,43 +1,44 @@
-import React from "react";
-import classes from "./signup.module.sass";
-import { useForm } from "react-hook-form";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { registration } from "../../features/counter/authSlice";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
-const SignUp = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const { register, handleSubmit } = useForm();
-
-  const { wrapper, signup, input__wrapper, input__wrapper_submit } = classes;
-
-  const onSubmit = (data) => {
-    dispatch(registration(data));
-    setTimeout(() => {
-      history.push("/signin");
-    }, 10);
+class SignUp extends Component {
+  state = {
+    email: null,
+    password: null,
   };
 
-  return (
-    <section className={wrapper}>
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className={signup}>
-        <section className={input__wrapper}>
-          <label>Email: </label>
-          <input type="text" {...register("email", { required: true })} />
-        </section>
+  handleSubmit = (e) => {
+    e.preventDefault();
+    if (this.state.email && this.state.password) {
+      this.props.registration({
+        email: this.state.email,
+        password: this.state.password,
+      });
+    }
+  };
 
-        <section className={input__wrapper}>
-          <label>Password: </label>
-          <input type="text" {...register("password", { required: true })} />
-        </section>
-        <section className={input__wrapper_submit}>
-          <input type="submit" />
-        </section>
-      </form>
-    </section>
-  );
-};
+  render() {
+    return (
+      <section className="border flex flex-col justify-center p-5">
+        <p className="flex justify-center p-4">Sing Up</p>
+        <form onSubmit={this.handleSubmit} className="border p-2 flex flex-col items-center">
+          <input
+            className="border p-2"
+            type="text"
+            onChange={(e) => this.setState({ email: e.target.value })}
+          />
+          <input
+            className="border p-2 mt-3"
+            type="text"
+            onChange={(e) => this.setState({ password: e.target.value })}
+          />
 
-export default SignUp;
+          <input className="mt-2 border w-44" type="submit" value="Submit" />
+        </form>
+      </section>
+    );
+  }
+}
+
+export default connect(null, { registration })(SignUp);

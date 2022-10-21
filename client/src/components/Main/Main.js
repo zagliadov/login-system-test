@@ -1,24 +1,17 @@
 import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
+import Home from "../Home/Home";
 
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 const Main = () => {
   return (
     <main>
-      <Switch>
-        <Route path="/signin">
-          <SignIn />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <Route path="/" exact>
-          <div>
-            <h1>Home</h1>
-          </div>
-        </Route>
-      </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="signin" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
+        </Routes>
     </main>
   );
 };

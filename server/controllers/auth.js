@@ -9,7 +9,7 @@ export const registration = async (req, res) => {
     console.log(req.body)
     try {
         await sequelize.query(`
-       INSERT INTO "Users"(email, password)
+       INSERT INTO Users(email, password)
             VALUES('${email}', '${password}')
        `);
         res.status(201).json({ message: 'User create' });

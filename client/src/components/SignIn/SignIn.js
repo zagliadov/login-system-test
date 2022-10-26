@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { login, getStatus } from "../../features/counter/authSlice";
+import { login, removeMessage } from "../../features/counter/authSlice";
 import { withNavigate } from "../../helper/helper";
 
 class SignIn extends Component {
@@ -11,17 +11,22 @@ class SignIn extends Component {
       password: "",
       message: null,
     };
-  }
+  };
 
   componentDidMount() {
     localStorage.removeItem("token");
   };
 
-  // componentDidUpdate() {
-  //   if (this.props.token) {
-  //     this.setState({message: ";sdfkjaskl"})
-  //   } 
-  // };
+  componentDidUpdate() {
+    if (this.props.token !== null) {
+      this.props.navigation('/');
+    };
+    if (this.props.message !== null) {
+      setTimeout(() => {
+        this.props.removeMessage();
+      }, 2000);
+    };
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +37,6 @@ class SignIn extends Component {
       });
     };
     this.setState({email: null, password: null});
-    console.log(this.props.status)
   };
 
   render() {
@@ -53,6 +57,7 @@ class SignIn extends Component {
             onChange={(e) => this.setState({ password: e.target.value })}
           />
           <input className="mt-2 border w-44" type="submit" value="Submit" />
+          <p className="pt-3">{this.props.message && this.props.message}</p>
         </form>
       </section>
     );
@@ -61,7 +66,7 @@ class SignIn extends Component {
 function mapStateToProps(state) {
   return {
     token: state.counter.token,
-    status: state.counter.status,
+    message: state.counter.message,
   };
 };
-export default withNavigate(connect(mapStateToProps, { login })(SignIn));
+export default withNavigate(connect(mapStateToProps, { login, removeMessage })(SignIn));

@@ -22,7 +22,7 @@ export const testQuery = async (req, res) => {
         name,
         birthday,
         stipend
-       FROM students WHERE NOT ((birthday = '1993-06-07' or stipend > 500) and id >= '9')`
+       FROM students WHERE NOT ((birthday = '1993-06-07' or stipend > 500) and id >= 9)`
     );
     res.status(200).json(students[0]);
   } catch (error) {

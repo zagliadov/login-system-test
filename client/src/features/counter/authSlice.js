@@ -15,7 +15,7 @@ const initialState = {
 // code can then be executed and other actions can be dispatched. Thunks are
 // typically used to make async requests.
 export const registration = createAsyncThunk(
-  "user/registration",
+  "auth/registration",
   async (data) => {
     try {
       return await axios
@@ -28,7 +28,7 @@ export const registration = createAsyncThunk(
   }
 );
 
-export const login = createAsyncThunk("user/login", async (data) => {
+export const login = createAsyncThunk("auth/login", async (data) => {
   try {
     return await axios
       .post(`http://127.0.0.1:9001/api/auth/login`, data)
@@ -43,7 +43,7 @@ export const login = createAsyncThunk("user/login", async (data) => {
 });
 
 export const verifyToken = createAsyncThunk(
-  "user/verifyToken",
+  "auth/verifyToken",
   async (data) => {
     try {
       return await axios
@@ -62,13 +62,13 @@ export const verifyToken = createAsyncThunk(
   }
 );
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const authSlice = createSlice({
+  name: "auth",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     removeMessage(state) {
-      state.message = null
+      state.message = null;
     },
     removeToken() {
       localStorage.removeItem("token");
@@ -93,7 +93,7 @@ export const counterSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         if (action.payload.hasOwnProperty("message")) {
           state.message = action.payload.message;
-        };
+        }
         state.status = "resolved";
         if (typeof action.payload === "string") {
           state.token = String(action.payload);
@@ -113,11 +113,11 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { removeMessage, removeToken } = counterSlice.actions;
+export const { removeMessage, removeToken } = authSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const getStatus = (state) => state.counter.token;
 
-export default counterSlice.reducer;
+export default authSlice.reducer;

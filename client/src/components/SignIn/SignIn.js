@@ -65,8 +65,8 @@ class SignIn extends Component {
 }
 function mapStateToProps(state) {
   return {
-    token: state.counter.token,
-    message: state.counter.message,
+    token: state.auth.token,
+    message: state.auth.message,
   };
 };
 export default withNavigate(connect(mapStateToProps, { login, removeMessage })(SignIn));

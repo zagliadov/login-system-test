@@ -5,7 +5,7 @@ import { sequelize } from "../sequelize/sequelize.js";
 export const getStudents = async (req, res) => {
   try {
     const students = await sequelize.query(
-      `SELECT surname, name FROM students`
+      `SELECT * FROM students`
     );
     res.status(200).json(students[0]);
   } catch (error) {

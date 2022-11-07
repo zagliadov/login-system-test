@@ -1,51 +1,51 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { registration } from "../../features/counter/authSlice";
-import { withNavigate } from "../../helper/helper";
-class SignUp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: null,
-      password: null,
-    };
-  }
+import { useDispatch } from "react-redux";
 
-  handleSubmit = (e) => {
+export const SignUp = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const navigation = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (this.state.email && this.state.password) {
-      this.props.registration({
-        email: this.state.email,
-        password: this.state.password,
-      });
-    };
-    this.setState({email: "", password: ""});
-    this.props.navigation('/signin');
+    if (email && password) {
+      dispatch(
+        registration({
+          email: email,
+          password: password,
+        })
+      );
+    }
+    setEmail("");
+    setPassword("");
+    navigation("/signin");
   };
 
-  render() {
-    return (
-      <section className="border flex flex-col justify-center p-5">
-        <p className="flex justify-center p-4">Sing Up</p>
-        <form onSubmit={this.handleSubmit} className="border p-2 flex flex-col items-center">
-          <input
-            className="border p-2"
-            type="text"
-            value={this.state.email || ""}
-            onChange={(e) => this.setState({ email: e.target.value })}
-          />
-          <input
-            className="border p-2 mt-3"
-            type="text"
-            value={this.state.password || ""}
-            onChange={(e) => this.setState({ password: e.target.value })}
-          />
+  return (
+    <section className="border flex flex-col justify-center p-5">
+      <p className="flex justify-center p-4">Sing Up</p>
+      <form
+        onSubmit={handleSubmit}
+        className="border p-2 flex flex-col items-center"
+      >
+        <input
+          className="border p-2"
+          type="text"
+          value={email || ""}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="border p-2 mt-3"
+          type="text"
+          value={password || ""}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-          <input className="mt-2 border w-44" type="submit" value="Submit" />
-        </form>
-      </section>
-    );
-  }
-}
-
-export default withNavigate(connect(null, { registration })(SignUp));
+        <input className="mt-2 border w-44" type="submit" value="Submit" />
+      </form>
+    </section>
+  );
+};

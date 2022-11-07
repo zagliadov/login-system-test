@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { verifyToken } from "../../features/counter/authSlice";
-import { Students } from "./Students/Students";
 import { Link } from "react-router-dom";
 
 export const Private = () => {

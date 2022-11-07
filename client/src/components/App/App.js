@@ -1,17 +1,24 @@
-import React, { Component } from "react";
-import Main from "../Main/Main";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "../Home/Home";
+import { SignIn } from "../SignIn/SignIn";
+import { SignUp } from "../SignUp/SignUp";
+import { Private } from "../Private/Private";
+import { Students } from "../Private/Students/Students";
+import { PageNotFound } from "../PageNotFound/PageNotFound";
+import { Layout } from "../Layout/Layout";
 
-export default class App extends Component {
-  state = {
-    user: {
-      role: "admin",
-    },
-  };
-  render() {
-    return (
-      <section>
-        <Main />
-      </section>
-    );
-  }
-}
+export const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="private" element={<Private />}></Route>
+        <Route path="private/students" element={<Students />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Route>
+    </Routes>
+  );
+};

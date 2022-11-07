@@ -1,11 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { removeToken } from "../../features/counter/authSlice";
 
 export const Nav = () => {
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.auth.token);
 
   return (
     <header className="p-3 flex justify-end">

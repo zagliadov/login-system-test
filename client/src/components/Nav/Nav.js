@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Nav = () => {
 
+  
   return (
     <header className="p-3 flex justify-end">
       <Link className="pr-4" to="/">

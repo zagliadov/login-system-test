@@ -9,7 +9,7 @@ services:
     depends_on:
       - server
       - dataBase
-    command: npm start
+    command: npm run start
     volumes:
       - ./client:/app
   server:

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/authSlice";
+import authSlice from "./authSlice";
+import studentsSlice from "./studentsSlice";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    auth: authSlice,
+    students: studentsSlice,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),

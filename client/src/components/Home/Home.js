@@ -1,20 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+export const Home = () => {
 
-    };
-  };
-
-  
-
-  render() {
-    return (
-      <section className="border p-4 flex justify-center">
-        <p>Home</p>
-      </section>
-    );
-  }
-}
+  return (
+    <section className="border p-4 flex justify-center">
+      <p>Home</p>
+    </section>
+  );
+};

@@ -19,7 +19,6 @@ export const Private = () => {
 
   return (
     <div className="flex flex-col border items-center pt-5 text-xl">
-      <h3>Private route</h3>
       <div className="pt-8">
         <p>Hello {user && user.email}</p>
         <Link to={"/private/students"}>Students</Link>

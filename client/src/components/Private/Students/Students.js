@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { getStudents } from "../../../features/counter/studentsSlice";
 
 export const Students = () => {
@@ -15,9 +16,9 @@ export const Students = () => {
         students.map((student) => {
           return (
             <div key={student.id}>
-              <p>
+              <Link to={`/private/student/${student.id}`}>
                 {student.surname} {student.name}
-              </p>
+              </Link>
             </div>
           );
         })}

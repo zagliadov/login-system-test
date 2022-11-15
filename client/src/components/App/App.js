@@ -7,6 +7,7 @@ import { Private } from "../Private/Private";
 import { Students } from "../Private/Students/Students";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 import { Layout } from "../Layout/Layout";
+import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 
 export const App = () => {
   return (
@@ -15,9 +16,12 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
-        <Route path="private" element={<Private />}></Route>
-        <Route path="private/students" element={<Students />} />
         <Route path="*" element={<PageNotFound />} />
+      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route index element={<Layout />} />
+        <Route path="private" element={<Private />} />
+        <Route path="private/students" element={<Students />} />
       </Route>
     </Routes>
   );

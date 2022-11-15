@@ -2,9 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  value: 0,
   status: "",
-  user: null,
   token: null,
   message: null,
 };
@@ -41,26 +39,6 @@ export const login = createAsyncThunk("auth/login", async (data) => {
     console.log(error);
   }
 });
-
-export const verifyToken = createAsyncThunk(
-  "auth/verifyToken",
-  async (data) => {
-    try {
-      return await axios
-        .post(`http://127.0.0.1:9001/api/auth/verifytoken`, data, {
-          headers: {
-            Authorization: `Bearer ${data}`,
-          },
-        })
-        .then((response) => response.data)
-        .then((data) => {
-          return data;
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -101,15 +79,6 @@ export const authSlice = createSlice({
         }
       })
       .addCase(login.rejected, () => {});
-    builder
-      .addCase(verifyToken.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(verifyToken.fulfilled, (state, { payload }) => {
-        state.status = "resolved";
-        state.user = payload;
-      })
-      .addCase(verifyToken.rejected, () => {});
   },
 });
 

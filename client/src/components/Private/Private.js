@@ -9,13 +9,17 @@ export const Private = () => {
   const user = useSelector((state) => state.auth.user);
   const navigation = useNavigate();
 
-  React.useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch(verifyToken(localStorage.getItem("token")));
-    } else {
-      navigation("/");
-    }
-  }, [navigation, dispatch]);
+  // React.useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     dispatch(verifyToken(localStorage.getItem("token")));
+  //   } else {
+  //     navigation("/");
+  //   }
+  // }, [navigation, dispatch]);
+
+  // React.useEffect(() => {
+
+  // })
 
   return (
     <div className="flex flex-col border items-center pt-5 text-xl">

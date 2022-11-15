@@ -16,11 +16,12 @@ export const App = () => {
         <Route index element={<Home />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
-        <Route element={<PrivateRoute />}>
-          <Route path="private" element={<Private />}></Route>
-          <Route path="private/students" element={<Students />} />
-        </Route>
         <Route path="*" element={<PageNotFound />} />
+      </Route>
+      <Route element={<PrivateRoute />}>
+        <Route index element={<Layout />} />
+        <Route path="private" element={<Private />} />
+        <Route path="private/students" element={<Students />} />
       </Route>
     </Routes>
   );

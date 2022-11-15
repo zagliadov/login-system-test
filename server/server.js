@@ -6,6 +6,7 @@ import { sequelize } from "./sequelize/sequelize.js";
 //****Route
 import auth from "./routes/auth.js";
 import students from "./routes/students.js";
+import user from "./routes/user.js";
 
 const app = express(),
   PORT = String(9001);
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use("/api/auth", auth);
 app.use("/api/students", students);
+app.use("/api/user", user);
 
 sequelize.sync().then(() => {
   app.listen(PORT, async () => {

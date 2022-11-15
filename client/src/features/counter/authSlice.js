@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialState = {
   status: "",
+  token: null,
   message: null,
 };
 
@@ -73,6 +74,7 @@ export const authSlice = createSlice({
         }
         state.status = "resolved";
         if (typeof action.payload === "string") {
+          state.token = String(action.payload);
           localStorage.setItem("token", String(action.payload));
         }
       })

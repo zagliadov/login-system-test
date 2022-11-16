@@ -9,7 +9,7 @@ export const Nav = () => {
         <IsOnline />
       </div>
       <div className="flex">
-        <CustomLink to="/">
+        <CustomLink to="/home">
           Home
         </CustomLink>
         <CustomLink to="/private">

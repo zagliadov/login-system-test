@@ -1,27 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { IsOnline } from "../IsOnline/IsOnline";
+import { CustomLink } from "../CustomLink/CustomLink";
 
 export const Nav = () => {
-
   return (
     <header className="p-2 flex justify-between">
       <div className="flex items-center">
         <IsOnline />
       </div>
       <div className="flex">
-        <Link className="pr-4" to="/">
+        <CustomLink to="/home">
           Home
-        </Link>
-        <Link className="pr-4" to="/private">
+        </CustomLink>
+        <CustomLink to="/private">
           Private
-        </Link>
-        <Link className="pr-4" to="/signin">
+        </CustomLink>
+        <CustomLink to="/signin">
           Sign In
-        </Link>
-        <Link className="pr-4" to="/signup">
+        </CustomLink>
+        <CustomLink to="/signup">
           Sign Up
-        </Link>
+        </CustomLink>
       </div>
     </header>
   );

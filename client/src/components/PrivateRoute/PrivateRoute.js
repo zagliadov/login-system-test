@@ -1,15 +1,14 @@
 import React from "react";
 import { useAuth } from "../../features/hooks/useAuth";
-import { Navigate } from "react-router-dom";
-import { Layout } from "../Layout/Layout";
+import { Navigate, Outlet } from "react-router-dom";
 
 export const PrivateRoute = () => {
-  const { isLoggedIn, user, message } = useAuth();
-  if (isLoggedIn === "undefined") {
+  const { isLoggedIn } = useAuth();
+  if (typeof isLoggedIn === "undefined") {
     return null;
   }
-  return isLoggedIn ? (
-    <Layout user={user} message={message} />
+  return isLoggedIn && typeof isLoggedIn !== "undefined" ? (
+    <Outlet />
   ) : (
     <Navigate to="/signin" />
   );

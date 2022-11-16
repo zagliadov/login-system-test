@@ -12,16 +12,15 @@ import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="*" element={<PageNotFound />} />
-      </Route>
-      <Route element={<PrivateRoute />}>
-        <Route index element={<Layout />} />
-        <Route path="private" element={<Private />} />
-        <Route path="private/students" element={<Students />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/private" element={<Private />} />
+          <Route path="/private/students" element={<Students />} />
+        </Route>
       </Route>
     </Routes>
   );

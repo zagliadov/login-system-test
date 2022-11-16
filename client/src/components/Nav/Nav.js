@@ -1,6 +1,6 @@
 import React from "react";
 import { IsOnline } from "../IsOnline/IsOnline";
-import { Link } from "react-router-dom";
+import { CustomLink } from "../CustomLink/CustomLink";
 
 export const Nav = () => {
   return (
@@ -9,18 +9,18 @@ export const Nav = () => {
         <IsOnline />
       </div>
       <div className="flex">
-        <Link className="pr-4" to="/">
+        <CustomLink to="/">
           Home
-        </Link>
-        <Link className="pr-4" to="/private">
+        </CustomLink>
+        <CustomLink to="/private">
           Private
-        </Link>
-        <Link className="pr-4" to="/signin">
+        </CustomLink>
+        <CustomLink to="/signin">
           Sign In
-        </Link>
-        <Link className="pr-4" to="/signup">
+        </CustomLink>
+        <CustomLink to="/signup">
           Sign Up
-        </Link>
+        </CustomLink>
       </div>
     </header>
   );

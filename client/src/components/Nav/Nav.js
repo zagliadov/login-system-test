@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { IsOnline } from "../IsOnline/IsOnline";
+import { Link } from "react-router-dom";
 
 export const Nav = () => {
-
   return (
     <header className="p-2 flex justify-between">
       <div className="flex items-center">

@@ -5,10 +5,10 @@ import { Layout } from "../Layout/Layout";
 
 export const PrivateRoute = () => {
   const { isLoggedIn, user, message } = useAuth();
-  if (isLoggedIn === "undefined") {
+  if (typeof isLoggedIn === "undefined") {
     return null;
   }
-  return isLoggedIn ? (
+  return isLoggedIn && typeof isLoggedIn !== "undefined" ? (
     <Layout user={user} message={message} />
   ) : (
     <Navigate to="/signin" />

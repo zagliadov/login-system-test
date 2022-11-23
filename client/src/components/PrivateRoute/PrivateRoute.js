@@ -7,7 +7,7 @@ export const PrivateRoute = () => {
   if (typeof isLoggedIn === "undefined") {
     return null;
   }
-  return isLoggedIn && typeof isLoggedIn !== "undefined" ? (
+  return (isLoggedIn && typeof isLoggedIn !== "undefined") ? (
     <Outlet context={[isLoggedIn, user]} />
   ) : (
     <Navigate to="/signin" />

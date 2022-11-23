@@ -6,7 +6,7 @@ export const getStudents = createAsyncThunk(
   async () => {
     try {
       return await axios
-        .get(`http://127.0.0.1:9001/api/students/get-students`)
+        .get(`http://localhost:9001/api/students/get-students`)
         .then((response) => response.data)
         .then((data) => data);
     } catch (error) {
@@ -18,7 +18,7 @@ export const getStudents = createAsyncThunk(
 export const testQuery = createAsyncThunk("students/testQuery", async () => {
   try {
     return await axios
-      .get(`http://127.0.0.1:9001/api/students/test-query`)
+      .get(`http://localhost:9001/api/students/test-query`)
       .then((response) => response.data)
       .then((data) => data);
   } catch (error) {

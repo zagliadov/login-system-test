@@ -24,7 +24,7 @@ export const login = async (req, res) => {
     const user = await sequelize.query(
       `
             SELECT email, password FROM Users
-            WHERE email = '${email}'
+            WHERE email = "${email}"
         `,
       { type: QueryTypes.SELECT }
     );

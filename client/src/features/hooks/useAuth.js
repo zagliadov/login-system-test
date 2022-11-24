@@ -11,7 +11,7 @@ export const useAuth = () => {
       const token = localStorage.getItem("token");
       if (token) {
         axios
-          .post(`http://127.0.0.1:9001/api/auth/verifytoken`, token, {
+          .post(`http://localhost:9001/api/auth/verifytoken`, token, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

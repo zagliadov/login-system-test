@@ -5,7 +5,7 @@ export const CustomLink = ({ children, to, ...props }) => {
   return (
     <Link
       to={to}
-      className={`${match ? "text-teal-500" : ""} pr-4`}
+      className={`${match ? "text-sky-700" : ""} pr-4`}
       {...props}
     >
       {children}

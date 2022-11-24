@@ -6,7 +6,7 @@ export const getUser = createAsyncThunk(
   async () => {
     try {
       return await axios
-        .get(`http://127.0.0.1:9001/api/user/get-user`)
+        .get(`http://localhost:9001/api/user/get-user`)
         .then((response) => response.data)
         .then((data) => data);
     } catch (error) {

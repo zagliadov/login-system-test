@@ -17,7 +17,7 @@ export const registration = createAsyncThunk(
   async (data) => {
     try {
       return await axios
-        .post(`http://127.0.0.1:9001/api/auth/registration`, data)
+        .post(`http://localhost:9001/api/auth/registration`, data)
         .then((response) => response.data)
         .then((data) => data.message);
     } catch (error) {
@@ -29,7 +29,7 @@ export const registration = createAsyncThunk(
 export const login = createAsyncThunk("auth/login", async (data) => {
   try {
     return await axios
-      .post(`http://127.0.0.1:9001/api/auth/login`, data)
+      .post(`http://localhost:9001/api/auth/login`, data)
       .then((response) => response.data)
       .then((data) => {
         if (!data) return;

@@ -1,0 +1,3 @@
+# GET http://localhost:9001/api/students/get-students
+# POST http://localhost:9001/api/auth/verifytoken
+# Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QiLCJpYXQiOjE2Njk0NTg0MjAsImV4cCI6MTY2OTUxODQyMH0.d49xVIMBuJXx0EyLOjJHEf_2PpbgPXamHXiCmd5Y0X4

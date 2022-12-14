@@ -6,7 +6,7 @@ export const IsOnline = () => {
   return (
     <p
       className={`animate-pulse ${
-        status ? "bg-lime-400" : "bg-red-500"
+        status ? "bg-lime-600" : "bg-red-500"
       } border w-2 h-2 rounded-full`}
     ></p>
   );

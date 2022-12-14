@@ -7,8 +7,12 @@ import { Private } from "../Private/Private";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 import { Layout } from "../Layout/Layout";
 import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
+import { userChangesTab } from "../../helper/helper";
 
 export const App = () => {
+  React.useEffect(() => {
+    userChangesTab();
+  }, []);
   return (
     <Routes>
       <Route element={<Layout />}>

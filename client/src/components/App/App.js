@@ -7,12 +7,10 @@ import { Private } from "../Private/Private";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 import { Layout } from "../Layout/Layout";
 import { PrivateRoute } from "../PrivateRoute/PrivateRoute";
-import { userChangesTab } from "../../helper/helper";
+import { useTitle } from "../../features/hooks/useTitle";
 
 export const App = () => {
-  React.useEffect(() => {
-    userChangesTab();
-  }, []);
+  useTitle("Come back :(");
   return (
     <Routes>
       <Route element={<Layout />}>
